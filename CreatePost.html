@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Create a Post - TutorLoop</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        
+        <!-- HEADER -->
+        <header class="sticky top-0 z-10 w-full bg-background-light dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center gap-4 text-[#111418] dark:text-white">
+                        <div class="size-6 text-primary">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TutorLoop</h2>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <nav class="hidden md:flex items-center gap-8">
+                            <a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="index.html">Home</a>
+                            <a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Dashboard</a>
+                        </nav>
+                        <div class="flex items-center gap-2">
+                            <button class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined text-xl">notifications</span>
+                            </button>
+                            <a href="profile.html" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 hover:ring-2 hover:ring-primary transition-all" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr1w1sMZLdin_sEK-c85pPAKihh4OU7P1i7WzIVe8ZiembKxcd-VOPLtF-6fFysYzQeShyi9uFKYOcYIN_O0Niga0VyBFRUJsnbNB-1J9MWuePu1dzk6C1LjSOcGN2oGxxTJYKkL48OsoGKOGPOS8coYkFwFZC9OkX247PBYoPP-NWs6F6nlKp-O-Nc3_qvURoKWcobZkNVHauHdJ1oqieviXgl1NNAyeyZB2tufjDwrp5sYXNPGntMPxw7LiIj-PgPFObL2ae6S0");'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-8">
+                
+                <!-- HEADER SECTION -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <a href="Main.html" class="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
+                            <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">arrow_back</span>
+                        </a>
+                        <div>
+                            <h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Create a Post</h1>
+                            <p class="text-gray-500 dark:text-gray-400 text-base mt-1">Tell tutors what you need help with</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN FORM CARD -->
+                <div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg p-8">
+                    <form id="createPostForm" class="flex flex-col gap-6">
+                        
+                        <!-- SUBJECT FIELD -->
+                        <div>
+                            <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2" for="subject">
+                                <span class="material-symbols-outlined text-primary">book</span>
+                                Subject
+                            </label>
+                            <input 
+                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-lg px-4 py-3" 
+                                id="subject" 
+                                placeholder="e.g., Calculus, Physics, Chemistry..." 
+                                type="text" 
+                                required
+                            />
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Enter the subject you need help with</p>
+                        </div>
+
+                        <!-- URGENCY LEVEL -->
+                        <div>
+                            <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2" for="urgency">
+                                <span class="material-symbols-outlined text-primary">schedule</span>
+                                Urgency
+                            </label>
+                            <select 
+                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-lg px-4 py-3" 
+                                id="urgency"
+                            >
+                                <option value="flexible">Flexible - No rush</option>
+                                <option value="soon">Soon - Within a week</option>
+                                <option value="urgent">Urgent - ASAP</option>
+                            </select>
+                        </div>
+
+                        <!-- DESCRIPTION FIELD -->
+                        <div>
+                            <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2" for="description">
+                                <span class="material-symbols-outlined text-primary">description</span>
+                                Description
+                            </label>
+                            <textarea 
+                                class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-base px-4 py-3 min-h-[200px]" 
+                                id="description" 
+                                placeholder="Describe what you need help with in detail. Be specific about topics, concepts, or problems you're struggling with..."
+                                required
+                            ></textarea>
+                            <div class="flex items-center justify-between mt-2">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Be as detailed as possible to get the best matches</p>
+                                <span id="charCount" class="text-sm text-gray-400 dark:text-gray-500">0 / 500</span>
+                            </div>
+                        </div>
+
+                        <!-- BUDGET FIELD -->
+                        <div>
+                            <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2" for="budget">
+                                <span class="material-symbols-outlined text-primary">payments</span>
+                                Budget per Hour (Optional)
+                            </label>
+                            <div class="flex gap-3">
+                                <div class="relative flex-1">
+                                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 dark:text-gray-400 text-lg">$</span>
+                                    <input 
+                                        class="w-full pl-8 pr-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-lg" 
+                                        id="budget" 
+                                        type="number" 
+                                        placeholder="50" 
+                                        min="0"
+                                        step="5"
+                                    />
+                                </div>
+                                <select 
+                                    class="rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3"
+                                    id="currency"
+                                >
+                                    <option>USD</option>
+                                    <option>EUR</option>
+                                    <option>GBP</option>
+                                </select>
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Set your budget to help tutors understand your price range</p>
+                        </div>
+
+                        <!-- DIVIDER -->
+                        <div class="border-t border-gray-200 dark:border-gray-800"></div>
+
+                        <!-- PREVIEW SECTION -->
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="material-symbols-outlined text-primary">visibility</span>
+                                <h3 class="text-[#111418] dark:text-white text-lg font-bold">Preview</h3>
+                            </div>
+                            <div id="preview" class="space-y-3">
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Subject</p>
+                                    <p id="previewSubject" class="text-[#111418] dark:text-white text-base font-semibold">Your subject will appear here...</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Description</p>
+                                    <p id="previewDescription" class="text-gray-600 dark:text-gray-300 text-sm">Your description will appear here...</p>
+                                </div>
+                                <div class="flex gap-4 mt-4">
+                                    <div>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Urgency</p>
+                                        <span id="previewUrgency" class="inline-block px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Flexible</span>
+                                    </div>
+                                    <div id="previewBudgetContainer" class="hidden">
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Budget</p>
+                                        <p id="previewBudget" class="text-[#111418] dark:text-white text-sm font-semibold"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                            <button 
+                                type="submit"
+                                class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-base font-bold shadow-md hover:shadow-lg"
+                            >
+                                <span class="material-symbols-outlined">send</span>
+                                <span>Post Request</span>
+                            </button>
+                            <button 
+                                type="button"
+                                onclick="window.location.href='index.html'"
+                                class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-base font-bold"
+                            >
+                                <span>Cancel</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const subjectInput = document.getElementById('subject');
+            const descriptionInput = document.getElementById('description');
+            const urgencySelect = document.getElementById('urgency');
+            const budgetInput = document.getElementById('budget');
+            const currencySelect = document.getElementById('currency');
+            const charCount = document.getElementById('charCount');
+            const form = document.getElementById('createPostForm');
+
+            // Preview elements
+            const previewSubject = document.getElementById('previewSubject');
+            const previewDescription = document.getElementById('previewDescription');
+            const previewUrgency = document.getElementById('previewUrgency');
+            const previewBudget = document.getElementById('previewBudget');
+            const previewBudgetContainer = document.getElementById('previewBudgetContainer');
+
+            // Character counter for description
+            descriptionInput.addEventListener('input', function() {
+                const length = this.value.length;
+                charCount.textContent = `${length} / 500`;
+                
+                if (length > 500) {
+                    charCount.classList.add('text-red-500');
+                } else {
+                    charCount.classList.remove('text-red-500');
+                }
+            });
+
+            // Live preview updates
+            subjectInput.addEventListener('input', function() {
+                previewSubject.textContent = this.value || 'Your subject will appear here...';
+            });
+
+            descriptionInput.addEventListener('input', function() {
+                previewDescription.textContent = this.value || 'Your description will appear here...';
+            });
+
+            urgencySelect.addEventListener('change', function() {
+                const urgencyText = this.options[this.selectedIndex].text.split(' - ')[0];
+                previewUrgency.textContent = urgencyText;
+                
+                // Change color based on urgency
+                previewUrgency.className = 'inline-block px-3 py-1 text-xs font-medium rounded-full ';
+                if (this.value === 'urgent') {
+                    previewUrgency.className += 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400';
+                } else if (this.value === 'soon') {
+                    previewUrgency.className += 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400';
+                } else {
+                    previewUrgency.className += 'bg-primary/20 text-primary';
+                }
+            });
+
+            function updateBudgetPreview() {
+                const budget = budgetInput.value;
+                const currency = currencySelect.value;
+                
+                if (budget) {
+                    previewBudgetContainer.classList.remove('hidden');
+                    previewBudget.textContent = `${currency} $${budget}/hr`;
+                } else {
+                    previewBudgetContainer.classList.add('hidden');
+                }
+            }
+
+            budgetInput.addEventListener('input', updateBudgetPreview);
+            currencySelect.addEventListener('change', updateBudgetPreview);
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const subject = subjectInput.value;
+                const description = descriptionInput.value;
+                const urgency = urgencySelect.value;
+                const budget = budgetInput.value;
+                const currency = currencySelect.value;
+
+                // Validate
+                if (!subject || !description) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                if (description.length > 500) {
+                    alert('Description must be 500 characters or less');
+                    return;
+                }
+
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in z-50';
+                successMessage.innerHTML = `
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <div>
+                        <p class="font-bold">Post Created Successfully!</p>
+                        <p class="text-sm">Tutors will start responding soon.</p>
+                    </div>
+                `;
+                document.body.appendChild(successMessage);
+
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'Main.html';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b8cee",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Pop-up modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+    
+    .dark .modal-content {
+      background: #1e293b;
+      color: white;
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden">
+<div class="flex h-full flex-row">
+<aside class="flex h-full w-64 flex-col justify-between border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark p-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7t3H88h3oQa2nA8Yev1he66JI7lN0rJJHntlTE5N2mvAUyJ70LKG-Fi2Z4Tl3HBqkxu_bH_Jkltj07yss3ViS9O2H1sgsP0y9OzYjMzMeF7U_iqmf3TYOpQ4OL9bKx4Vf6TOEFPcpaSlRY6cX3yhb6u6dBxvRbinUofdOif6bDGGPl0bwU30R2npU0i1npUCQ3kj2ytDFzQ7hiWtqlflEwV0wlap8K6tBaHuxF_bLBjNF5Wq--a4nf9-DdM--FP2KCq-nLx_TY");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-medium leading-normal">John Doe</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Student</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="Main.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">dashboard</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="chat.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">chat</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="find_tutor.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">group</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Tutors</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1 border-t border-gray-200 dark:border-gray-700 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-primary font-bold">settings</span>
+<p class="text-primary text-sm font-bold leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="Login.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">logout</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col items-center p-6 overflow-y-auto">
+<div class="w-full max-w-2xl mx-auto">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Settings</h2>
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700 p-8 flex flex-col gap-8">
+<div class="flex items-center gap-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7t3H88h3oQa2nA8Yev1he66JI7lN0rJJHntlTE5N2mvAUyJ70LKG-Fi2Z4Tl3HBqkxu_bH_Jkltj07yss3ViS9O2H1sgsP0y9OzYjMzMeF7U_iqmf3TYOpQ4OL9bKx4Vf6TOEFPcpaSlRY6cX3yhb6u6dBxvRbinUofdOif6bDGGPl0bwU30R2npU0i1npUCQ3kj2ytDFzQ7hiWtqlflEwV0wlap8K6tBaHuxF_bLBjNF5Wq--a4nf9-DdM--FP2KCq-nLx_TY");'></div>
+<div class="flex-1">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">John Doe</h3>
+<p class="text-slate-500 dark:text-slate-400">john.doe@email.com</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-medium" onclick="window.location.href='Profile.html'">
+                Edit Profile
+              </button>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700"></div>
+<div class="flex flex-col gap-6">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white">Password Change</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="current-password">Current Password</label>
+<input class="w-full pl-4 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" id="current-password" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="new-password">New Password</label>
+<input class="w-full pl-4 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" id="new-password" placeholder="••••••••" type="password"/>
+<span id="password-error" class="text-red-500 text-xs hidden"></span>
+</div>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-medium self-start" onclick="validatePassword()">
+              Update Password
+            </button>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700"></div>
+<div class="flex flex-col gap-4">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white">Delete/Deactivate Account</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">You can temporarily deactivate your account or permanently delete it.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800" onclick="showDeactivateModal()">
+<span class="material-symbols-outlined">pause</span>
+<span>Deactivate Account</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-red-500/50 bg-red-500/10 text-red-500 hover:bg-red-500/20" onclick="showDeleteModal()">
+<span class="material-symbols-outlined">delete</span>
+<span>Delete Account</span>
+</button>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700"></div>
+<div class="flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">help</span>
+<span class="text-slate-800 dark:text-slate-200">Help &amp; Support</span>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_right</span>
+</button>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700"></div>
+<div class="flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<span class="text-red-500">Log Out</span>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+<!-- Deactivate Account Modal -->
+<div id="deactivateModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Deactivate Account</h3>
+    <p class="text-slate-600 dark:text-slate-300 mb-4">Are you sure you want to deactivate your account? You can reactivate it later by logging in.</p>
+    <div class="flex gap-3 justify-end">
+      <button class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700" onclick="hideDeactivateModal()">Cancel</button>
+      <button class="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-white" onclick="confirmDeactivate()">Deactivate</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div id="deleteModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3 class="text-lg font-bold text-red-600 mb-2">Delete Account</h3>
+    <p class="text-slate-600 dark:text-slate-300 mb-4">WARNING: This will permanently delete your account and all associated data. This action cannot be undone.</p>
+    <div class="flex gap-3 justify-end">
+      <button class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700" onclick="hideDeleteModal()">Cancel</button>
+      <button class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white" onclick="confirmDelete()">Delete Account</button>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Password validation function
+    function validatePassword() {
+      const currentPassword = document.getElementById('current-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const passwordError = document.getElementById('password-error');
+      
+      // Clear previous error
+      passwordError.classList.add('hidden');
+      
+      // Check if passwords are the same
+      if (currentPassword === newPassword) {
+        passwordError.textContent = 'New password cannot be the same as current password';
+        passwordError.classList.remove('hidden');
+        return false;
+      }
+      
+      // Password must be at least 8 characters and contain both letters and numbers
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      
+      if (!passwordRegex.test(newPassword)) {
+        passwordError.textContent = 'Password must be at least 8 characters and contain both letters and numbers';
+        passwordError.classList.remove('hidden');
+        return false;
+      }
+      
+      // If all validations pass
+      passwordError.classList.add('hidden');
+      alert('Password updated successfully!');
+      document.getElementById('current-password').value = '';
+      document.getElementById('new-password').value = '';
+      return true;
+    }
+    
+    // Modal functions for deactivate account
+    function showDeactivateModal() {
+      document.getElementById('deactivateModal').classList.remove('hidden');
+    }
+    
+    function hideDeactivateModal() {
+      document.getElementById('deactivateModal').classList.add('hidden');
+    }
+    
+    function confirmDeactivate() {
+      // Add deactivation logic here
+      alert('Account deactivated successfully!');
+      hideDeactivateModal();
+    }
+    
+    // Modal functions for delete account
+    function showDeleteModal() {
+      document.getElementById('deleteModal').classList.remove('hidden');
+    }
+    
+    function hideDeleteModal() {
+      document.getElementById('deleteModal').classList.add('hidden');
+    }
+    
+    function confirmDelete() {
+      // Add deletion logic here
+      alert('Account deleted successfully!');
+      hideDeleteModal();
+    }
+    
+    // Close modals when clicking outside
+    document.addEventListener('click', function(event) {
+      const deactivateModal = document.getElementById('deactivateModal');
+      const deleteModal = document.getElementById('deleteModal');
+      
+      if (event.target === deactivateModal) {
+        hideDeactivateModal();
+      }
+      
+      if (event.target === deleteModal) {
+        hideDeleteModal();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Tutors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b8cee",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden">
+<div class="flex h-full flex-row">
+<aside class="flex h-full w-64 flex-col justify-between border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark p-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7t3H88h3oQa2nA8Yev1he66JI7lN0rJJHntlTE5N2mvAUyJ70LKG-Fi2Z4Tl3HBqkxu_bH_Jkltj07yss3ViS9O2H1sgsP0y9OzYjMzMeF7U_iqmf3TYOpQ4OL9bKx4Vf6TOEFPcpaSlRY6cX3yhb6u6dBxvRbinUofdOif6bDGGPl0bwU30R2npU0i1npUCQ3kj2ytDFzQ7hiWtqlflEwV0wlap8K6tBaHuxF_bLBjNF5Wq--a4nf9-DdM--FP2KCq-nLx_TY");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-medium leading-normal">John Doe</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Student</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="main.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">dashboard</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="chat.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">chat</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="find_tutor.html">
+<span class="material-symbols-outlined text-primary font-bold">group</span>
+<p class="text-primary text-sm font-bold leading-normal">Tutors</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1 border-t border-gray-200 dark:border-gray-700 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="settings.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">settings</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="Login.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">logout</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col">
+<header class="flex h-16 shrink-0 items-center justify-between border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark px-6">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Find a Tutor</h2>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 py-2 pl-10 pr-4 text-sm text-slate-800 dark:text-slate-200 focus:border-primary focus:ring-primary" placeholder="Search by subject or name..." type="text"/>
+</div>
+<a href="find_tutor_filter.html">
+<button class="flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-base">filter_list</span>
+<span>Filter</span>
+</button>
+</a>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-6">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4CkdMV_ZgCL_8PXxofJn8Aww_jORS0GuUtF6rLL1aT0kSxZkSSpOVjucw57YCgyL0TJPSYTUEwZlhvpJg1hE1kk1C-Uo0v_FDqw6sZJ9Hx5RckkwRT0_71g3N6CpSsDqNsXOrXBY7-59sX3djOL0v2USdUs9zKnAU7JiKDhREY7oqFdhMK2aYxHigdSAFn7_IRweYq2a-BQMO7HuzL9yQ_YaYBy7pCaHpRsTMZbcA81wadrQiJ0U3K2FLBVQLjjP2kM0qFl6MofE");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Jane Smith</h3>
+<p class="text-sm text-primary">English Literature</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(24)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">Shakespeare expert with 5+ years of experience helping students ace their exams.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of Michael Brown" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAIhch97_VqDCEJdkJks6dKBLEBbSip6wYOcjoCAOk1MzwFixfPJUkXPBxtSo4bF8_WP-UncYhxwtt70RIuB3O_Kyxax0T9CZX-Jxx-BiqWh_5Jz2MlHZjz7-_fHalE8DjFyv7Wadc04xs6H1AXxBhMogtWEHK0ito2guLCCTtNaKONGG1-2bbo8fNiu0A4EodnRZCvGaCzaQ7Maxv33FaHvmIIRpa-JZgCdxWpmo4mVv4YS8Mr6O6-r3U0HEHW9335e4GiiPrwU0");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Michael Brown</h3>
+<p class="text-sm text-primary">Calculus I &amp; II</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(31)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">PhD in Mathematics, passionate about making complex concepts easy to understand.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of Sarah Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDF4XVa9s_Pfn9SyMP2HG_VxaOtzO9TzX_8Pp9M5L8VyTkzrsJyFBOlpdmyLvOu_Gz7tt2aARZecs5WbZehiG0iUkVDMGUhWNSg7Zk15VXfSdBK9t75UIuw4WJcX-xHht-0eKmv-0AYIduhWRQ22oLfE5eVjbuq7STcyjiC9J4bLcO1U85j9ucMnwyMGJDgO8n1jr3hlb8hMeFQm45LZUwGdEWTssb_1t3kCeckwh5-AQESk7btFU6Xc2pYJXEQ85AnctzA52R9riI");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Sarah Chen</h3>
+<p class="text-sm text-primary">Chemistry</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(18)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">Former lab researcher, skilled in both theoretical and practical chemistry tutoring.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of David Lee" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArOoPvMswGazx-1ENjjMDMkiFx9SY2eAkmXOMsRd8gNuioJbCPnPgEx-g7Fz9vNMu8ThaZBv-AgOaWuEYEy4aW_TIjhKYMBckgbEd06lKqNDgFztIcdR_cRSJlsAYsNh7-56Wa5p_VnbjcG7FibElAHCn0-RyKD5GGt-WoImw3drl56EzmjT55agp5IgrJHcJRXpefp7FNEz9XMVMnNFLhTC9rwgGoE4GOPy-4HeF_2QKLgGh2f2sSS9ac0DqpMWkW7Bpxr9vYrRU");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">David Lee</h3>
+<p class="text-sm text-primary">History</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(42)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">Bringing the past to life, with a focus on ancient civilizations and modern history.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of Emily Rodriguez" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAP8TNflOFJk4uhtiIEsw0z4YNHjlz6HIxns-gqp9gMApoRSH0OepED-4dfMcL_M5UlWyCItAYJwkeXq3KLpivg53b8ol385bsPZ3nGsdSAzRrNmVYiBpcwPdSa92vEzhvVFOXfV-tyo8-yD0XQgC1N-pZHZ1PWVFM6GXvypTVyM4EovEenTKErETFlhqyUsx8TpU_TAga9ktjcrbTwXOY_SkB2Hd6MV4AR6-2fhT8BipFLGojKbt7yd3S1mSwb6bo572UnS23YMa4");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Emily Rodriguez</h3>
+<p class="text-sm text-primary">Spanish</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(29)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">Native speaker offering immersive lessons for all levels, from beginner to advanced.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="relative h-32 w-full bg-slate-200 dark:bg-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 size-20 rounded-full border-4 border-white dark:border-background-dark" data-alt="Profile picture of Kevin Garcia" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPWb55XwhBHNwNneYIRy-YW_3Hcv9iS2lx3zrYO1Os9fzGfQ4RdTH9E59a9o1zukW6S1zUV6SFF3aDyFqBJfM1MJubr7-x9toHuMslBw79MCGWCNbhkWOf_3kYqltLNCPmZC6rOKJ7n7Bmht5oTty2ejRQmEOBb6RgvsEND4DrG9lcuAQIfvjOhIDT-GGBaolneazNPdKbVJVExTEqLKW8K9zg12CZCZYKFUEWajEoBq4xwfTm-USDY2Cp66LQVm1VcffOGAq28_4");'></div>
+</div>
+<div class="flex flex-1 flex-col p-6 pt-12 text-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Kevin Garcia</h3>
+<p class="text-sm text-primary">Computer Science</p>
+<div class="my-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-lg text-amber-400">star</span>
+<span class="ml-1 text-sm text-slate-500 dark:text-slate-400">(35)</span>
+</div>
+<p class="flex-1 text-sm text-slate-600 dark:text-slate-300">Software engineer with a talent for teaching programming languages like Python and Java.</p>
+<button class="mt-4 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary/90">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

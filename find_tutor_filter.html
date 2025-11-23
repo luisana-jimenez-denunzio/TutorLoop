@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutors Listing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b8cee",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden">
+<div class="flex h-full flex-row">
+<aside class="flex h-full w-64 flex-col justify-between border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark p-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7t3H88h3oQa2nA8Yev1he66JI7lN0rJJHntlTE5N2mvAUyJ70LKG-Fi2Z4Tl3HBqkxu_bH_Jkltj07yss3ViS9O2H1sgsP0y9OzYjMzMeF7U_iqmf3TYOpQ4OL9bKx4Vf6TOEFPcpaSlRY6cX3yhb6u6dBxvRbinUofdOif6bDGGPl0bwU30R2npU0i1npUCQ3kj2ytDFzQ7hiWtqlflEwV0wlap8K6tBaHuxF_bLBjNF5Wq--a4nf9-DdM--FP2KCq-nLx_TY");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-medium leading-normal">John Doe</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Student</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="main.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">dashboard</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="chat.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">chat</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="find_tutor.html">
+<span class="material-symbols-outlined text-primary font-bold">group</span>
+<p class="text-primary text-sm font-bold leading-normal">Tutors</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1 border-t border-gray-200 dark:border-gray-700 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="settings.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">settings</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="Login.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">logout</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col">
+<div class="flex-1 flex flex-col p-8">
+<header class="flex items-center justify-between mb-8">
+<h1 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">Find Your Tutor</h1>
+<div class="flex items-center gap-4">
+<div class="relative w-72">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 absolute left-3 top-1/2 -translate-y-1/2">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" placeholder="Search by name or subject" type="text"/>
+</div>
+</div>
+</header>
+<div class="flex-1 flex gap-8">
+<aside class="w-72 flex-shrink-0">
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<h2 class="text-slate-900 dark:text-white text-lg font-bold">Filter By</h2>
+<div class="flex flex-col gap-3">
+<label class="text-slate-800 dark:text-slate-200 text-sm font-medium" for="subject">Subject</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" id="subject">
+<option>All Subjects</option>
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>English</option>
+</select>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-slate-800 dark:text-slate-200 text-sm font-medium">Availability</label>
+<div class="flex flex-wrap gap-2">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 text-slate-800 dark:text-slate-200 hover:bg-primary/20 dark:hover:bg-primary/30 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Mon</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary text-white px-3 text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Tue</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 text-slate-800 dark:text-slate-200 hover:bg-primary/20 dark:hover:bg-primary/30 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Wed</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 text-slate-800 dark:text-slate-200 hover:bg-primary/20 dark:hover:bg-primary/30 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Thu</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary text-white px-3 text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Fri</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 text-slate-800 dark:text-slate-200 hover:bg-primary/20 dark:hover:bg-primary/30 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Sat</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 text-slate-800 dark:text-slate-200 hover:bg-primary/20 dark:hover:bg-primary/30 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors duration-200" onclick="toggleDay(this)">Sun</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-slate-800 dark:text-slate-200 text-sm font-medium" for="rating">Rating</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" id="rating">
+<option>4 stars &amp; up</option>
+<option>3 stars &amp; up</option>
+<option>2 stars &amp; up</option>
+<option>1 star &amp; up</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-4 flex-1 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200" onclick="applyFilters()">Apply Filters</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-4 flex-1 bg-transparent text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-bold leading-normal tracking-[0.015em] transition-colors duration-200" onclick="clearFilters()">Clear Filters</button>
+</div>
+</div>
+</aside>
+<div class="flex-1 overflow-y-auto">
+<div class="grid grid-cols-1 @[40rem]:grid-cols-2 @[60rem]:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnzqsbj6uYF1WE9fwYUghRsmlW6BMdIqiO7X8cgHiScNeTPM8RUkBz0AGCHzeNaRUjeIN1NGtDMLTPhJCGIkBcTWiEg7K82U7mCvdOdf9Iu4shhjwqLiGHpLquMwNV5tZLmycWGZtcKa1orli_q_tqq8f2gNeXfdSB26ya-q3C3QMm28ztPuqYDhW5exhcQUwdgXLH5ODINM_KN1bZC6o6GxzfbikaGj2UZYAsdanENmBMcQkZdsC0Cf5DXI63gDLfB3nKDYQAwtc");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-green-500 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Dr. Evelyn Reed</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">PhD in Mathematics</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">4.9 (120 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Specializing in advanced calculus and algebra, with 10+ years of university-level teaching experience.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Calculus</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Algebra</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Trigonometry</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$60<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFW3hdPBkPCMGyrmpolhkxWGVmesMIaOD-N1hCFmBvTDhtgBKnCQMq3BUiRpnTeA4iQd8XkA_5ibz7edOqhfo-_42nZXtwCtb-KLF5Cd2jvSNME4ie-dinoIYtH1jnpX58Ol9CbkZhHt1XZ2aHTTAomvGgHTxeFYXxLf8Zhm9vEG_Ce5SiGqC0OlbWrxyb7LfSaduNjrINSh80slR7fFMaAt7APVFVGB4sf8RrUiJ8iprGU66FVfd0T9G0Dxz6u9PbO7urhHk5bvA");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-slate-400 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Marcus Chen</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">M.S. in Physics</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">4.8 (85 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Expert in quantum mechanics and thermodynamics. Passionate about making complex topics accessible.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Physics</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Quantum Mechanics</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$55<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDO1zyvWr9mIljlnq8Mdq-tYCW0x8q4wxq0O1JNvRGhC5dqGW0rv3lUmoYXUJXUI3w6QZp3omZSbhWc0X_pLWHcQ3dVhdGFWJYPOvW4vazLoCc1bQIkxffSVWpN1e6PuhwO5VkBUJbFIt4AfkYmcsDDPFMPvJhYLiqXvNn5oMwjXfBbdcu6kDIOeYsEtSseUsMJNRrbAMkv1ynY_uz5yf1NTaeVlAcCtPaViqeEgC7ZDaBWYCbmY9vT971j75wUehiu9nJv0ng44c4");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-green-500 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Isabella Rossi</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">B.A. in English Literature</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">5.0 (92 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Helps students with essay writing, literary analysis, and exam preparation. Shakespeare enthusiast.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">English</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Essay Writing</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Literature</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$45<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIRipGjPIiV6Q_QqWehU2_ouJR0alYATBIDOWjfGtD57Anbnuuix-0VSGlhjuVKkVK77huNTRLb7TxVyARJ8_GEYQ5csYnOMMkclqGtGzqMQOKF0KWl37He3brc_CUdoqRVJIp0WfU4E5PoRv73dzbtkUImfNTzU8vTBkFvSqHR7owCOt1OgAn7z_jx-fYLWtLT0QrxkSxZHRQpcRbRLSkbS4L5YA0Il6GlxwSHSLN5Gyeopvx_GR4ZYaCV3AFJX9GvSwDNqyBcdM");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-green-500 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Ben Carter</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Certified SAT &amp; ACT Prep</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">4.9 (150 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Proven strategies to boost standardized test scores. Personalized study plans for each student.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">SAT Prep</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">ACT Prep</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Test Strategy</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$70<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrSXcNZQgYhIjuE-152uFBR4aHJEBI2tzmRPoI-Dv3yGFIhQp1RWmpcOfVSauWrFBrPuMdNQG4vk_CBphIDa3agX5n6zyMak2wQHCfYkKJLsFa8iNhfvNQtwF3opcz-1Wm8Hkpdq5WOxCfo4PF07SvMfXRsdVtYVTBA-tnAWO41Tfue-hmCkXrOkzRfekANPmPZNhlvMVj1oC7OxY-g4oEtLFYuK-fUOEs21CvjIaVlawvA0MG1A9oso103DADFzD5msM3fw-L3Ck");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-slate-400 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Chloe Kim</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">B.S. in Chemistry</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">4.7 (78 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Organic chemistry and general chemistry expert. I make molecular structures easy to understand.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Chemistry</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">Organic Chemistry</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$50<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16" data-alt="Tutor profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxvaQG0j_GLC1VBYXMB992l3jrKH_7v0fJphxIsna2yA9kEJ0IZJtVT1FmeUTB4-stjb5QQD7Qipvo-wMBIz0A6BLfLStFvqLyPFtUCATpzh2MHrfXd-_hQzVqBxykQejWPWzxGG0ZRluGP90RfjpzKkYRrH6qYZV64fJDPRcwbbCvqJKqSuoq00mK73r1ckvhsrc_gcbftMSwHY2IW1YjFf7GH8hPJJDGD7sORZmFF53A0PWmt_G6l5Bz3EgbmiCGUPF9GqaoXWc");'></div>
+<span class="absolute bottom-0 right-0 block h-4 w-4 rounded-full bg-green-500 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Liam Johnson</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">M.A. in History</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-slate-700 dark:text-slate-300 text-sm font-medium">4.9 (112 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-2">Bringing history to life, from ancient civilizations to modern times. Expert in research and writing.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">History</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">World History</span>
+<span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-full">US History</span>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+<p class="text-slate-900 dark:text-white text-lg font-bold">$50<span class="text-slate-500 dark:text-slate-400 text-sm font-normal">/hr</span></p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors duration-200">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+<script>
+function toggleDay(button) {
+    if (button.classList.contains('bg-primary')) {
+        button.classList.remove('bg-primary', 'text-white');
+        button.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-slate-200');
+    } else {
+        button.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-slate-200');
+        button.classList.add('bg-primary', 'text-white');
+    }
+}
+
+function applyFilters() {
+    const subject = document.getElementById('subject').value;
+    const rating = document.getElementById('rating').value;
+    
+    // Burada filtreleme işlemleri yapılabilir
+    alert(`Filters applied:\nSubject: ${subject}\nRating: ${rating}`);
+    
+    // Gerçek uygulamada burada API çağrısı yapılabilir veya liste filtrelenebilir
+}
+
+function clearFilters() {
+    document.getElementById('subject').value = 'All Subjects';
+    document.getElementById('rating').value = '4 stars & up';
+    
+    // Gün butonlarını sıfırla
+    const dayButtons = document.querySelectorAll('button[onclick*="toggleDay"]');
+    dayButtons.forEach(button => {
+        if (button.textContent === 'Tue' || button.textContent === 'Fri') {
+            button.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-slate-200');
+            button.classList.add('bg-primary', 'text-white');
+        } else {
+            button.classList.remove('bg-primary', 'text-white');
+            button.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-slate-200');
+        }
+    });
+    
+    alert('Filters cleared!');
+}
+</script>
+
+</body></html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TutorLoop - Find Your Perfect Tutor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+
+        .chat-panel {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .chat-panel.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .tutor-card {
+            transition: all 0.3s ease;
+        }
+
+        .tutor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Evitar desbordes en las tarjetas */
+        .tutor-card p,
+        .tutor-card h3 {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        /* Mostrar todo el texto sin cortar */
+        .tutor-card p {
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            /* mostrar hasta 4 líneas antes de truncar */
+            -webkit-box-orient: vertical;
+            min-height: 5.5em;
+            /* asegurar altura similar */
+        }
+
+        /* Mantener altura consistente */
+        .tutor-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 360px;
+            max-height: none;
+            overflow: hidden;
+        }
+
+        /* Botón "Create Post" responsivo */
+        @media (max-width: 640px) {
+            .create-post-btn {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+
+        <!-- HEADER -->
+        <header
+            class="sticky top-0 z-10 w-full bg-background-light dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center gap-4 text-[#111418] dark:text-white">
+                        <div class="size-6 text-primary">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TutorLoop</h2>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <nav class="hidden md:flex items-center gap-8">
+                        </nav>
+                        <div class="flex items-center gap-2">
+                            <a href="Settings.html"
+                                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined text-xl">settings</span>
+                            </a>
+                            <a href="Login.html"
+                                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined text-xl">logout</span>
+                            </a>
+                            <button
+                                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined text-xl">notifications</span>
+                            </button>
+                            <a href="profile.html"
+                                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 hover:ring-2 hover:ring-primary transition-all"
+                                data-alt="User avatar"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr1w1sMZLdin_sEK-c85pPAKihh4OU7P1i7WzIVe8ZiembKxcd-VOPLtF-6fFysYzQeShyi9uFKYOcYIN_O0Niga0VyBFRUJsnbNB-1J9MWuePu1dzk6C1LjSOcGN2oGxxTJYKkL48OsoGKOGPOS8coYkFwFZC9OkX247PBYoPP-NWs6F6nlKp-O-Nc3_qvURoKWcobZkNVHauHdJ1oqieviXgl1NNAyeyZB2tufjDwrp5sYXNPGntMPxw7LiIj-PgPFObL2ae6S0");'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 w-full">
+            <div class="flex max-w-7xl mx-auto">
+
+                <!-- CHAT SIDEBAR (IZQUIERDA) -->
+                <aside id="chatPanel"
+                    class="chat-panel w-80 bg-white dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 h-[calc(100vh-4rem)] sticky top-16 hidden lg:block overflow-hidden">
+                    <div class="flex flex-col h-full">
+                        <div class="p-4 border-b border-gray-200 dark:border-gray-800">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-[#111418] dark:text-white text-lg font-bold">Messages</h3>
+                                <button id="closeChatPanel"
+                                    class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                                    <span class="material-symbols-outlined text-xl">close</span>
+                                </button>
+                            </div>
+                            <div class="mt-3">
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                        <span class="material-symbols-outlined text-lg">search</span>
+                                    </span>
+                                    <input type="text" placeholder="Search messages..."
+                                        class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-y-auto">
+                            <!-- Chat Item 1 -->
+                            <a href="chat.html"
+                                class="p-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition block">
+                                <div class="flex items-start gap-3">
+                                    <div class="bg-center bg-no-repeat bg-cover rounded-full size-12"
+                                        style='background-image: url("https://images.unsplash.com/photo-1614289371518-722f2615943d?auto=format&fit=crop&w=150&q=80");'>
+                                    </div>
+
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-[#111418] dark:text-white text-sm font-bold truncate">Arthur
+                                                Morgan</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">2m</span>
+                                        </div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm truncate">Thanks for the
+                                            session today!</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Chat Item 2 -->
+                            <a href="chat.html"
+                                class="p-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition block">
+                                <div class="flex items-start gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        style='background-image: url("https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150");'>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-[#111418] dark:text-white text-sm font-bold truncate">Ada
+                                                Wong</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">1h</span>
+                                        </div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm truncate">Can we reschedule
+                                            tomorrow?</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Chat Item 3 -->
+                            <a href="chat.html"
+                                class="p-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition block">
+                                <div class="flex items-start gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        style='background-image: url("https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150");'>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-[#111418] dark:text-white text-sm font-bold truncate">William
+                                                Afton</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">3h</span>
+                                        </div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm truncate">Do you teach
+                                            advanced calculus?</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Chat Item 4 -->
+                            <a href="chat.html"
+                                class="p-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition block">
+                                <div class="flex items-start gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        style='background-image: url("https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=150");'>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-[#111418] dark:text-white text-sm font-bold truncate">Tony
+                                                Stark</p>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">1d</span>
+                                        </div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm truncate">Great explanation
+                                            on physics!</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- CONTENT CENTER -->
+                <div class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+
+                    <!-- CREATE POST + SEARCH BAR -->
+                    <div class="mb-8">
+                        <!--CREATE POST -->
+                        <div class="flex justify-center mb-4">
+                            <a href="CreatePost.html"
+                                class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-base font-bold shadow-md flex items-center">
+                                <span class="material-symbols-outlined align-middle mr-1 text-lg">add_circle</span>
+                                Create Post
+                            </a>
+                        </div>
+
+                        <!--SEARCH BAR -->
+                        <div class="relative max-w-3xl mx-auto">
+                            <span class="absolute inset-y-0 left-0 pl-6 flex items-center text-gray-400">
+                                <span class="material-symbols-outlined text-2xl">search</span>
+                            </span>
+                            <input id="searchInput" type="text"
+                                placeholder="Search for subjects (e.g., Mathematics, Physics, Chemistry...)" class="w-full pl-16 pr-6 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-700 
+                   bg-white dark:bg-gray-800 text-[#111418] dark:text-white text-lg 
+                   focus:ring-2 focus:ring-primary focus:border-primary shadow-lg">
+                        </div>
+
+                        <!-- FILTERS -->
+                        <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="Mathematics">Mathematics</button>
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="Physics">Physics</button>
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="Chemistry">Chemistry</button>
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="Biology">Biology</button>
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="English">English</button>
+                            <button
+                                class="filter-btn px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-medium cursor-pointer"
+                                data-subject="History">History</button>
+                        </div>
+                    </div>
+
+                    <!-- TUTORS GRID -->
+                    <div id="tutorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
+
+                        <!-- Tutor Card 1 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="Mathematics, Physics">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">Clark Kent</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Mathematics (Alebra/Calculus)
+                                    </p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★★</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(12 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Mathematics</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Discrete
+                                    Math</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Mathematics Enginerring Major
+                                Student who is currently studying their foruth year.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$10<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tutor Card 2 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="Chemistry, Biology">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">James Wilson</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Chemistry</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★☆</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(9 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Chemistry</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Hello, I am a Bio-Chemestry student
+                                in my 2nd year willing to help
+                                you with Chemistry.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$12<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tutor Card 3 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="English, History">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">Angelica Schuyler</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">English & Literature</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★★</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(14 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">English</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">History</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">I am a second year university
+                                student that is studying a
+                                English Literature Major.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$11<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tutor Card 4 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="Physics, Mathematics">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">Carl Grimmes</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Physics & Engineering</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★★</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(16 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Physics</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Mathematics</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">I am in a Quantum Physics
+                                Engineering major and im currently in my 5th year.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$70<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tutor Card 5 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="Biology, Chemistry">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">Elisabeth Swan</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Phsicology Major</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★★</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(17 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Phsicology</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Hello, I am a third year student
+                                who is studying a Phyiscology
+                                and Philosophy major.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$8<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tutor Card 6 -->
+                        <div class="tutor-card bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6"
+                            data-subjects="History, English">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    style='background-image: url("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150");'>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-[#111418] dark:text-white text-lg font-bold">Gregory House</h3>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Computer Science</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <span class="text-yellow-500 text-sm">★★★★☆</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs">(20 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                <span class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Data
+                                    Mining</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full">Statistics</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Greeting, I am a Computer Science
+                                student that is currently studying their
+                                fourth year.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[#111418] dark:text-white text-xl font-bold">$12<span
+                                        class="text-sm font-normal text-gray-500">/hr</span></span>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">Book
+                                    Now</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- NO RESULTS MESSAGE -->
+                    <div id="noResults" class="hidden text-center py-12">
+                        <span
+                            class="material-symbols-outlined text-6xl text-gray-300 dark:text-gray-600">search_off</span>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg mt-4">No tutors found for this subject.</p>
+                        <p class="text-gray-400 dark:text-gray-500 text-sm">Try searching for a different subject.</p>
+                    </div>
+                </div>
+
+                <!-- PROFILE QUICK ACCESS (DERECHA) -->
+                <aside
+                    class="w-80 bg-white dark:bg-background-dark border-l border-gray-200 dark:border-gray-800 h-[calc(100vh-4rem)] sticky top-16 hidden lg:block">
+                    <div class="flex flex-col h-full p-6">
+                        <div class="mb-6">
+                            <h3 class="text-[#111418] dark:text-white text-lg font-bold mb-4">Your Profile</h3>
+                            <div
+                                class="bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 rounded-xl p-4 border border-primary/20">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16 ring-2 ring-primary"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr1w1sMZLdin_sEK-c85pPAKihh4OU7P1i7WzIVe8ZiembKxcd-VOPLtF-6fFysYzQeShyi9uFKYOcYIN_O0Niga0VyBFRUJsnbNB-1J9MWuePu1dzk6C1LjSOcGN2oGxxTJYKkL48OsoGKOGPOS8coYkFwFZC9OkX247PBYoPP-NWs6F6nlKp-O-Nc3_qvURoKWcobZkNVHauHdJ1oqieviXgl1NNAyeyZB2tufjDwrp5sYXNPGntMPxw7LiIj-PgPFObL2ae6S0");'>
+                                    </div>
+                                    <div>
+                                        <p class="text-[#111418] dark:text-white text-base font-bold">John Doe</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm">Student</p>
+                                    </div>
+                                </div>
+                                <a href="profile.html"
+                                    class="flex items-center justify-center w-full h-10 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold gap-2">
+                                    <span class="material-symbols-outlined text-lg">person</span>
+                                    <span>View Profile</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
+                            <h4 class="text-[#111418] dark:text-white text-base font-bold mb-3">Quick Actions</h4>
+                            <div class="flex flex-col gap-2">
+                                <a href="sessions.html"
+                                    class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-left">
+                                    <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                    <span class="text-[#111418] dark:text-white text-sm font-medium">My Sessions</span>
+                                </a>
+                                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                                    href="find_tutor.html">
+                                    <span class="material-symbols-outlined text-primary">group</span>
+                                    <p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">
+                                        Tutors</p>
+                                </a>
+                                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                                    href="chat.html">
+                                    <span class="material-symbols-outlined text-primary">chat</span>
+                                    <p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">
+                                        Messages</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+                            <h4 class="text-[#111418] dark:text-white text-base font-bold mb-3">Upcoming Sessions</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="material-symbols-outlined text-primary text-sm">event</span>
+                                        <p class="text-[#111418] dark:text-white text-xs font-bold">Today, 3:00 PM</p>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Mathematics with Spencer Reid.
+                                    </p>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="material-symbols-outlined text-primary text-sm">event</span>
+                                        <p class="text-[#111418] dark:text-white text-xs font-bold">Tomorrow, 10:00 AM
+                                        </p>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Physics with Peter Parker</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-6 border-t border-gray-200 dark:border-gray-800">
+                            <a href="create-profile.html"
+                                class="flex items-center justify-center w-full h-10 px-4 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-sm font-bold gap-2">
+                                <span class="material-symbols-outlined text-lg">school</span>
+                                <span>Become a Tutor</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const tutorCards = document.querySelectorAll('.tutor-card');
+            const tutorsGrid = document.getElementById('tutorsGrid');
+            const noResults = document.getElementById('noResults');
+            const closeChatPanel = document.getElementById('closeChatPanel');
+            const chatPanel = document.getElementById('chatPanel');
+
+            // Chat panel toggle
+            if (closeChatPanel && chatPanel) {
+                closeChatPanel.addEventListener('click', function () {
+                    chatPanel.classList.add('hidden');
+                });
+            }
+
+            // Filter function
+            function filterTutors(searchTerm) {
+                let visibleCount = 0;
+
+                tutorCards.forEach(card => {
+                    const subjects = card.getAttribute('data-subjects').toLowerCase();
+                    const term = searchTerm.toLowerCase().trim();
+
+                    if (term === '' || subjects.includes(term)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    tutorsGrid.style.display = 'none';
+                    noResults.classList.remove('hidden');
+                } else {
+                    tutorsGrid.style.display = 'grid';
+                    noResults.classList.add('hidden');
+                }
+            }
+
+            // Search input event
+            searchInput.addEventListener('input', function (e) {
+                filterTutors(e.target.value);
+            });
+
+            // Filter button events - IMPROVED VERSION
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const subject = this.getAttribute('data-subject');
+                    searchInput.value = subject;
+                    filterTutors(subject);
+
+                    // Visual feedback - Tüm butonları sıfırla
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-primary/10', 'text-primary', 'hover:bg-primary', 'hover:text-white');
+                    });
+
+                    // Tıklanan butonu mavi yap
+                    this.classList.remove('bg-primary/10', 'text-primary', 'hover:bg-primary', 'hover:text-white');
+                    this.classList.add('bg-primary', 'text-white');
+                });
+            });
+
+            // Reset button styles when typing
+            searchInput.addEventListener('input', function () {
+                // Sadece boşsa sıfırla
+                if (this.value.trim() === '') {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-primary/10', 'text-primary', 'hover:bg-primary', 'hover:text-white');
+                    });
+                }
+            });
+
+            // Sayfa yüklendiğinde butonları sıfırla
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('bg-primary/10', 'text-primary', 'hover:bg-primary', 'hover:text-white');
+            });
+        });
+    </script>
+</body>
+
+</html>

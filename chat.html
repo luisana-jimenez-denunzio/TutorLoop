@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutor Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b8cee",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden">
+<div class="flex h-full flex-row">
+<aside class="flex h-full w-64 flex-col justify-between border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark p-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdH7t3H88h3oQa2nA8Yev1he66JI7lN0rJJHntlTE5N2mvAUyJ70LKG-Fi2Z4Tl3HBqkxu_bH_Jkltj07yss3ViS9O2H1sgsP0y9OzYjMzMeF7U_iqmf3TYOpQ4OL9bKx4Vf6TOEFPcpaSlRY6cX3yhb6u6dBxvRbinUofdOif6bDGGPl0bwU30R2npU0i1npUCQ3kj2ytDFzQ7hiWtqlflEwV0wlap8K6tBaHuxF_bLBjNF5Wq--a4nf9-DdM--FP2KCq-nLx_TY");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-medium leading-normal">John Doe</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Student</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="main.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">dashboard</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="chat.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">chat</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="find_tutor.html">
+<span class="material-symbols-outlined text-primary font-bold">group</span>
+<p class="text-primary text-sm font-bold leading-normal">Tutors</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1 border-t border-gray-200 dark:border-gray-700 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="settings.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">settings</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="Login.html">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">logout</span>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-row">
+<div class="w-80 flex-shrink-0 bg-background-light dark:bg-background-dark border-r border-gray-200 dark:border-gray-700 flex flex-col">
+<div class="p-4 border-b border-gray-200 dark:border-gray-700">
+<h2 class="text-slate-900 dark:text-white text-lg font-bold">Messages</h2>
+<div class="relative mt-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" placeholder="Search chats..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="space-y-2">
+  <!-- Jane Smith Message -->
+  <a class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50" href="#">
+    <div class="relative">
+      <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Jane Smith" style='background-image: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80");'></div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex justify-between items-center gap-2">
+        <h3 class="text-sm font-medium text-slate-900 dark:text-white">Jane Smith</h3>
+        <span class="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">Today</span>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 truncate">
+        Of course! Let me find a few links for you...
+      </p>
+    </div>
+  </a>
+
+  <!-- Arthur Morgan Message -->
+  <a class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50" href="#">
+    <div class="relative">
+      <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Arthur Morgan" style='background-image: url("https://images.unsplash.com/photo-1614289371518-722f2615943d?auto=format&fit=crop&w=150&q=80");'></div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex justify-between items-center gap-2">
+        <h3 class="text-sm font-medium text-slate-900 dark:text-white">Arthur Morgan</h3>
+        <span class="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">Yesterday</span>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 truncate">That's great, thanks! I'll take a look.</p>
+    </div>
+  </a>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col bg-white dark:bg-background-dark">
+<div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture of Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4CkdMV_ZgCL_8PXxofJn8Aww_jORS0GuUtF6rLL1aT0kSxZkSSpOVjucw57YCgyL0TJPSYTUEwZlhvpJg1hE1kk1C-Uo0v_FDqw6sZJ9Hx5RckkwRT0_71g3N6CpSsDqNsXOrXBY7-59sX3djOL0v2USdUs9zKnAU7JiKDhREY7oqFdhMK2aYxHigdSAFn7_IRweYq2a-BQMO7HuzL9yQ_YaYBy7pCaHpRsTMZbcA81wadrQiJ0U3K2FLBVQLjjP2kM0qFl6MofE");'></div>
+<span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-slate-900 dark:text-white text-base font-bold">Jane Smith</h2>
+<p class="text-green-600 dark:text-green-400 text-xs font-medium">Online</p>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Profile picture of Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBatHVi8Jo4wSarraRy3u7Gvn5XRbdnp-N2itd-EZWxKk0vCAOfGcHa17ou5qiZRLV8vShNWRUHxIPmQ-MmYk8RcUX71yPZsql5yBZOA5J8zUjBMYCcOhBDncD7s2isfpiKeqKD1gTuG1F5AKhMZhJRRxbcb4bHlNiZUzx3KeP7rUXCbLXfdH-hVrlxAP0mTseIf_0-Cx6sK-V2r8Cntc2SwsfJ_7Du1ZZISSrfzSZ69quUVmNtjBWL3iMQI23Qz1QoFAM-HKWch08");'></div>
+<div class="max-w-md">
+<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg rounded-tl-none">
+<p class="text-sm text-slate-800 dark:text-slate-200">
+                    Hi John! I've reviewed your latest essay on Shakespeare. Great work on the analysis of Hamlet's soliloquy.
+                  </p>
+</div>
+<span class="text-xs text-slate-400 dark:text-slate-500 mt-1 block">10:00 AM</span>
+</div>
+</div>
+<div class="flex items-start gap-3 justify-end">
+<div class="max-w-md">
+<div class="bg-primary p-3 rounded-lg rounded-br-none">
+<p class="text-sm text-white">
+                    Thanks, Jane! I struggled a bit with the context of the Globe Theatre. Do you have any resources you'd recommend?
+                  </p>
+</div>
+<span class="text-xs text-slate-400 dark:text-slate-500 mt-1 block text-right">10:02 AM</span>
+</div>
+</div>
+<div class="text-center my-4">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 rounded-full px-3 py-1">Session scheduled for October 5, 2024 at 2:00 PM</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Profile picture of Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgQT1XAMX1Qoy7eEtOk3-eYcKgXx_RtWxOHSn-HXmTIhCS8MOW0b2SYLRhP4T1B0q0gEKKi4_elLWLcd3KN7xLCTru5xABQaAvR41SX26-FMGT-5SRfP1zxbav2MwLTZBbYvEEHqv1pD1r5QENjA4RQ2a4rNeTVF7QqwuncDXVEn95A88q9mtXs1UYU2TeCHEfieDI8fbZonnethSP1cTf-b9NmZikM4CYGYS5HMnHD7iwPvv3o3_BucDrn7WeX-pCka8ww3PC7AQ");'></div>
+<div class="max-w-md">
+<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg rounded-tl-none">
+<p class="text-sm text-slate-800 dark:text-slate-200">
+                    Of course! Let me find a few links for you. We can also discuss it during our next session. Are you free this Saturday? I've updated my availability.
+                  </p>
+</div>
+<span class="text-xs text-slate-400 dark:text-slate-500 mt-1 block">10:03 AM</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-gray-200 dark:border-gray-700">
+<div class="relative">
+<input class="w-full pl-4 pr-12 py-3 rounded-xl border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:ring-primary focus:border-primary" placeholder="Type your message here..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white rounded-lg h-9 w-9 flex items-center justify-center hover:bg-primary/90">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

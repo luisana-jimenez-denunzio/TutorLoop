@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#2b8cee",
+          "background-light": "#f6f7f8",
+          "background-dark": "#101922",
+          "success": "#50E3C2",
+          "error": "#D0021B",
+        },
+        fontFamily: {
+          "display": ["Lexend", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style type="text/css">
+  body {
+    font-family: 'Lexend', sans-serif;
+  }
+  input[type="radio"] {
+    --radio-dot-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(43,140,238)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');
+  }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#333333] dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4 group/design-root overflow-x-hidden">
+<div class="w-full max-w-2xl rounded-xl bg-white dark:bg-background-dark dark:border dark:border-gray-700 shadow-lg">
+<div class="flex flex-col" id="payment-view">
+<div class="p-8">
+<div class="flex flex-col gap-2 mb-6">
+<h1 class="text-[#111418] dark:text-white text-3xl font-bold leading-tight tracking-tight">Finalize Your Lesson Payment</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base font-normal leading-normal">Lesson with Sarah J. - Algebra II - Oct 26, 2023 - 60 minutes</p>
+</div>
+<div class="rounded-lg border border-[#dbe0e6] dark:border-gray-700 bg-background-light dark:bg-gray-800/50 p-6">
+<div class="flex justify-between gap-x-6 py-2">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-normal leading-normal">Lesson Rate:</p>
+<p class="text-[#111418] dark:text-white text-sm font-medium leading-normal text-right">$50/hr</p>
+</div>
+<div class="flex justify-between gap-x-6 py-2">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-normal leading-normal">Total Duration:</p>
+<p class="text-[#111418] dark:text-white text-sm font-medium leading-normal text-right">60 minutes</p>
+</div>
+<div class="flex justify-between gap-x-6 pt-4 mt-4 border-t border-dashed border-[#dbe0e6] dark:border-gray-600">
+<p class="text-[#111418] dark:text-white text-base font-bold leading-normal">Total Due:</p>
+<p class="text-[#111418] dark:text-white text-base font-bold leading-normal text-right">$50.00</p>
+</div>
+</div>
+<h2 class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-tight pt-8 pb-4">Select a Payment Method</h2>
+<div class="flex flex-col gap-3">
+<label class="flex cursor-pointer items-center gap-4 rounded-lg border border-solid border-[#dbe0e6] dark:border-gray-700 p-[15px] flex-row-reverse has-[:checked]:border-2 has-[:checked]:border-primary has-[:checked]:bg-primary/10 dark:has-[:checked]:bg-primary/20">
+<input class="h-5 w-5 shrink-0 border-2 border-[#dbe0e6] dark:border-gray-500 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary" name="payment_method" type="radio" value="visa_1234"/>
+<div class="flex grow flex-col"><p class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Visa ending in 1234</p></div>
+</label>
+<label class="flex cursor-pointer items-center gap-4 rounded-lg border border-solid border-[#dbe0e6] dark:border-gray-700 p-[15px] flex-row-reverse has-[:checked]:border-2 has-[:checked]:border-primary has-[:checked]:bg-primary/10 dark:has-[:checked]:bg-primary/20">
+<input class="h-5 w-5 shrink-0 border-2 border-[#dbe0e6] dark:border-gray-500 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary" name="payment_method" type="radio" value="mastercard_5678"/>
+<div class="flex grow flex-col"><p class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Mastercard ending in 5678</p></div>
+</label>
+<label class="flex cursor-pointer items-center gap-4 rounded-lg border border-solid border-[#dbe0e6] dark:border-gray-700 p-[15px] flex-row-reverse has-[:checked]:border-2 has-[:checked]:border-primary has-[:checked]:bg-primary/10 dark:has-[:checked]:bg-primary/20">
+<input class="h-5 w-5 shrink-0 border-2 border-[#dbe0e6] dark:border-gray-500 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary" id="add-new-card-radio" name="payment_method" type="radio" value="new_card"/>
+<div class="flex grow flex-col">
+<p class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Add a new payment method</p>
+</div>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-4 border-t border-gray-200 dark:border-gray-700 bg-background-light dark:bg-gray-900/50 p-6 rounded-b-xl">
+<button id="confirm-btn" class="w-full rounded-lg bg-primary py-3 text-base font-bold text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Confirm Payment - $50.00</button>
+<div class="flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base">lock</span>
+<span>Secure SSL Payment</span>
+</div>
+</div>
+</div>
+<div class="hidden" id="success-view">
+<div class="flex flex-col items-center justify-center p-12 text-center">
+<div class="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-success/20 text-success">
+<span class="material-symbols-outlined" style="font-size: 40px;">check</span>
+</div>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white">Payment Successful!</h2>
+<p class="mt-3 max-w-sm text-gray-600 dark:text-gray-300">Your payment of $50.00 to Sarah J. has been confirmed. A receipt has been sent to your email.</p>
+<button class="mt-8 w-full max-w-xs rounded-lg bg-gray-200 dark:bg-gray-700 dark:text-white py-3 text-base font-bold text-gray-800 transition-colors hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Back to Dashboard</button>
+</div>
+</div>
+</div>
+<a class="mt-6 text-sm text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary/80" href="#">Having trouble? Contact Support</a>
+</div>
+
+<script>
+// Yeni kart ekleme seçeneğine tıklandığında hemen yönlendir
+document.getElementById('add-new-card-radio').addEventListener('change', function() {
+  if (this.checked) {
+    window.location.href = 'payment2.html';
+  }
+});
+
+document.getElementById('confirm-btn').addEventListener('click', function() {
+  const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
+  
+  if (selectedMethod && selectedMethod.value !== 'new_card') {
+    // Mevcut kartla ödeme yap - başarı ekranını göster
+    document.getElementById('payment-view').classList.add('hidden');
+    document.getElementById('success-view').classList.remove('hidden');
+  } else if (!selectedMethod) {
+    alert('Please select a payment method');
+  }
+});
+</script>
+</body>
+</html>
