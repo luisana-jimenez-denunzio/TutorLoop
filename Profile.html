@@ -133,7 +133,7 @@
 <div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6">
 <h2 class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pb-4">Actions</h2>
 <div class="flex flex-col gap-3">
-<button class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+<button id="saveProfileBtn" class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
 <span class="truncate">Save Profile</span>
 </button>
 <button class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -146,4 +146,18 @@
 </div>
 </main>
 </div>
+
+<script>
+  // Agregar evento al botón "Save Profile"
+  document.getElementById('saveProfileBtn').addEventListener('click', function() {
+    // Aquí puedes agregar validación o guardar datos antes de redirigir
+    // Por ejemplo:
+    // const fullName = document.getElementById('fullName').value;
+    // const headline = document.getElementById('headline').value;
+    // const aboutMe = document.getElementById('aboutMe').value;
+    
+    // Redirigir a Main.html
+    window.location.href = 'Main.html';
+  });
+</script>
 </body></html>
