@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Create a Post - TutorLoop</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b8cee",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .availability-cell {
+      transition: all 0.2s ease;
+    }
+
+    .availability-cell.selected {
+      background-color: #2b8cee;
+      color: white;
+    }
+
+    .availability-cell:hover {
+      background-color: #e5f0ff;
+    }
+
+    .dark .availability-cell:hover {
+      background-color: #1e3a5f;
+    }
+  </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+  <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 z-10 w-full bg-background-light dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4 text-[#111418] dark:text-white">
+            <div class="size-6 text-primary">
+              <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TutorLoop</h2>
+          </div>
+          <div class="flex items-center gap-4">
+            <nav class="hidden md:flex items-center gap-8">
+            </nav>
+            <div class="flex items-center gap-2">
+              <a href="Settings.html"
+                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                <span class="material-symbols-outlined text-xl">settings</span>
+              </a>
+              <a href="Login.html"
+                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                <span class="material-symbols-outlined text-xl">logout</span>
+              </a>
+              <button
+                class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+                <span class="material-symbols-outlined text-xl">notifications</span>
+              </button>
+              <a href="TutorProfile.html"
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 hover:ring-2 hover:ring-primary transition-all"
+                data-alt="User avatar"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr1w1sMZLdin_sEK-c85pPAKihh4OU7P1i7WzIVe8ZiembKxcd-VOPLtF-6fFysYzQeShyi9uFKYOcYIN_O0Niga0VyBFRUJsnbNB-1J9MWuePu1dzk6C1LjSOcGN2oGxxTJYKkL48OsoGKOGPOS8coYkFwFZC9OkX247PBYoPP-NWs6F6nlKp-O-Nc3_qvURoKWcobZkNVHauHdJ1oqieviXgl1NNAyeyZB2tufjDwrp5sYXNPGntMPxw7LiIj-PgPFObL2ae6S0");'></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 w-full">
+      <div class="flex max-w-7xl mx-auto">
+
+        <!-- LEFT SIDEBAR -->
+        <aside
+          class="w-80 bg-white dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 h-[calc(100vh-4rem)] sticky top-16 hidden lg:block overflow-y-auto">
+          <div class="flex flex-col h-full p-6">
+            <div class="mb-6">
+              <h3 class="text-[#111418] dark:text-white text-lg font-bold mb-4">Your Profile</h3>
+              <div
+                class="bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/20 dark:to-primary/10 rounded-xl p-4 border border-primary/20">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16 ring-2 ring-primary"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr1w1sMZLdin_sEK-c85pPAKihh4OU7P1i7WzIVe8ZiembKxcd-VOPLtF-6fFysYzQeShyi9uFKYOcYIN_O0Niga0VyBFRUJsnbNB-1J9MWuePu1dzk6C1LjSOcGN2oGxxTJYKkL48OsoGKOGPOS8coYkFwFZC9OkX247PBYoPP-NWs6F6nlKp-O-Nc3_qvURoKWcobZkNVHauHdJ1oqieviXgl1NNAyeyZB2tufjDwrp5sYXNPGntMPxw7LiIj-PgPFObL2ae6S0");'>
+                  </div>
+                  <div>
+                    <p class="text-[#111418] dark:text-white text-base font-bold">John Doe</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Student</p>
+                  </div>
+                </div>
+                <a href="TutorProfile.html"
+                  class="flex items-center justify-center w-full h-10 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold gap-2">
+                  <span class="material-symbols-outlined text-lg">person</span>
+                  <span>View Profile</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
+              <h4 class="text-[#111418] dark:text-white text-base font-bold mb-3">Quick Actions</h4>
+              <div class="flex flex-col gap-2">
+                <a href="sessions.html"
+                  class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-left">
+                  <span class="material-symbols-outlined text-primary">calendar_today</span>
+                  <span class="text-[#111418] dark:text-white text-sm font-medium">My Sessions</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                  href="chatTutor.html">
+                  <span class="material-symbols-outlined text-primary">chat</span>
+                  <p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">
+                    Messages</p>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                  href="Main.html">
+                  <span class="material-symbols-outlined text-primary">dashboard</span>
+                  <p class="text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal">Dashboard</p>
+                </a>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 class="text-[#111418] dark:text-white text-base font-bold mb-3">Upcoming Sessions</h4>
+              <div class="space-y-3">
+                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-primary text-sm">event</span>
+                    <p class="text-[#111418] dark:text-white text-xs font-bold">Today, 3:00 PM</p>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">Mathematics with Spencer Reid.
+                  </p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-primary text-sm">event</span>
+                    <p class="text-[#111418] dark:text-white text-xs font-bold">Tomorrow, 10:00 AM
+                    </p>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">Physics with Peter Parker</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <div class="flex-1 px-4 sm:px-6 lg:px-8 py-8 overflow-y-auto">
+          <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col gap-8">
+
+              <!-- HEADER SECTION -->
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                  <a href="Main.html"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
+                    <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">arrow_back</span>
+                  </a>
+                  <div>
+                    <h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                      Create a Post</h1>
+                    <p class="text-gray-500 dark:text-gray-400 text-base mt-1">Tell tutees what you offer to help</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MAIN FORM CARD -->
+              <div
+                class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg p-8">
+                <form id="createPostForm" class="flex flex-col gap-6">
+
+                  <!-- SUBJECT FIELD -->
+                  <div>
+                    <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2"
+                      for="subject">
+                      <span class="material-symbols-outlined text-primary">book</span>
+                      Subject
+                    </label>
+                    <input
+                      class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-lg px-4 py-3"
+                      id="subject" placeholder="e.g., Calculus, Physics, Chemistry..." type="text" required />
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Enter the subject you offer to help</p>
+                  </div>
+
+                  <!-- AVAILABILITY SECTION -->
+                  <div>
+                    <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-4"
+                      for="availability">
+                      <span class="material-symbols-outlined text-primary">schedule</span>
+                      Availability
+                    </label>
+
+                    <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6">
+                      <div class="grid grid-cols-8 gap-2 mb-4">
+                        <!-- Time headers -->
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center"></div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">9-10</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">10-11</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">11-12</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">12-13</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">13-14</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">14-15</div>
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 text-center">15-16</div>
+                      </div>
+
+                      <!-- Days and time slots -->
+                      <div class="space-y-2">
+                        <!-- Monday -->
+                        <div class="grid grid-cols-8 gap-2">
+                          <div class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">Mon</div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="9-10"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="10-11"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="11-12"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="12-13"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="13-14"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="14-15"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="mon" data-time="15-16"></div>
+                        </div>
+
+                        <!-- Tuesday -->
+                        <div class="grid grid-cols-8 gap-2">
+                          <div class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">Tue</div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="9-10"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="10-11"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="11-12"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="12-13"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="13-14"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="14-15"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="tue" data-time="15-16"></div>
+                        </div>
+
+                        <!-- Wednesday -->
+                        <div class="grid grid-cols-8 gap-2">
+                          <div class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">Wed</div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="9-10"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="10-11"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="11-12"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="12-13"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="13-14"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="14-15"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="wed" data-time="15-16"></div>
+                        </div>
+
+                        <!-- Thursday -->
+                        <div class="grid grid-cols-8 gap-2">
+                          <div class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">Thu</div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="9-10"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="10-11"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="11-12"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="12-13"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="13-14"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="14-15"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="thu" data-time="15-16"></div>
+                        </div>
+
+                        <!-- Friday -->
+                        <div class="grid grid-cols-8 gap-2">
+                          <div class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">Fri</div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="9-10"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="10-11"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="11-12"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="12-13"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="13-14"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="14-15"></div>
+                          <div
+                            class="availability-cell h-8 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded cursor-pointer text-center text-xs flex items-center justify-center"
+                            data-day="fri" data-time="15-16"></div>
+                        </div>
+                      </div>
+
+                      <div class="mt-4 flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                        <div class="flex items-center gap-2">
+                          <div
+                            class="w-4 h-4 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded">
+                          </div>
+                          <span>Available</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <div class="w-4 h-4 bg-primary border border-primary rounded"></div>
+                          <span>Selected</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Select your available time slots for
+                      tutoring sessions</p>
+                  </div>
+
+                  <!-- DESCRIPTION FIELD -->
+                  <div>
+                    <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2"
+                      for="description">
+                      <span class="material-symbols-outlined text-primary">description</span>
+                      Description
+                    </label>
+                    <textarea
+                      class="w-full rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-base px-4 py-3 min-h-[200px]"
+                      id="description"
+                      placeholder="Describe what you need help with in detail. Be specific about topics, concepts, or problems you're struggling with..."
+                      required></textarea>
+                    <div class="flex items-center justify-between mt-2">
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Be as detailed as possible to get the best
+                        matches</p>
+                      <span id="charCount" class="text-sm text-gray-400 dark:text-gray-500">0 / 500</span>
+                    </div>
+                  </div>
+
+                  <!-- PRICE FIELD -->
+                  <div>
+                    <label class="flex items-center gap-2 text-[#111418] dark:text-white text-base font-bold mb-2"
+                      for="price">
+                      <span class="material-symbols-outlined text-primary">payments</span>
+                      Price per Hour (Optional)
+                    </label>
+                    <div class="flex gap-3">
+                      <div class="relative flex-1">
+                        <span
+                          class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 dark:text-gray-400 text-lg">$</span>
+                        <input
+                          class="w-full pl-8 pr-4 py-3 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary text-lg"
+                          id="price" type="number" placeholder="50" min="0" step="5" />
+                      </div>
+                      <select
+                        class="rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3"
+                        id="currency">
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <option>GBP</option>
+                      </select>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Set your price to help students understand
+                      your rate</p>
+                  </div>
+
+                  <!-- DIVIDER -->
+                  <div class="border-t border-gray-200 dark:border-gray-800"></div>
+
+                  <!-- PREVIEW SECTION -->
+                  <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                      <span class="material-symbols-outlined text-primary">visibility</span>
+                      <h3 class="text-[#111418] dark:text-white text-lg font-bold">Preview</h3>
+                    </div>
+                    <div id="preview" class="space-y-3">
+                      <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Subject</p>
+                        <p id="previewSubject" class="text-[#111418] dark:text-white text-base font-semibold">Your
+                          subject will appear here...</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Description</p>
+                        <p id="previewDescription" class="text-gray-600 dark:text-gray-300 text-sm">Your description
+                          will appear here...</p>
+                      </div>
+                      <div class="flex gap-4 mt-4">
+                        <div id="previewPriceContainer" class="hidden">
+                          <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Price</p>
+                          <p id="previewPrice" class="text-[#111418] dark:text-white text-sm font-semibold"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ACTIONS -->
+                  <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                    <button type="submit"
+                      class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-base font-bold shadow-md hover:shadow-lg">
+                      <span class="material-symbols-outlined">send</span>
+                      <span>Post Request</span>
+                    </button>
+                    <button type="button" onclick="window.location.href='Main.html'"
+                      class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-base font-bold">
+                      <span>Cancel</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside
+          class="w-80 bg-white dark:bg-background-dark border-l border-gray-200 dark:border-gray-800 h-[calc(100vh-4rem)] sticky top-16 hidden lg:block overflow-y-auto">
+          <div class="flex flex-col h-full p-6">
+            <div class="mb-6">
+              <h3 class="text-[#111418] dark:text-white text-lg font-bold mb-4">Tips for a Great Post</h3>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">lightbulb</span>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Be specific about the topics or concepts you offer
+                    to help</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">lightbulb</span>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Mention your teaching goals and what you hope to
+                    achieve</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">lightbulb</span>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Select multiple time slots to increase your
+                    chances of matching</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">lightbulb</span>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Set a realistic price to attract qualified
+                    students</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 class="text-[#111418] dark:text-white text-base font-bold mb-3">Popular Subjects</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Mathematics</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Physics</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Chemistry</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Biology</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Computer
+                  Science</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">English</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const subjectInput = document.getElementById('subject');
+      const descriptionInput = document.getElementById('description');
+      const priceInput = document.getElementById('price');
+      const currencySelect = document.getElementById('currency');
+      const charCount = document.getElementById('charCount');
+      const form = document.getElementById('createPostForm');
+      const availabilityCells = document.querySelectorAll('.availability-cell');
+
+      // Preview elements
+      const previewSubject = document.getElementById('previewSubject');
+      const previewDescription = document.getElementById('previewDescription');
+      const previewPrice = document.getElementById('previewPrice');
+      const previewPriceContainer = document.getElementById('previewPriceContainer');
+
+      // Availability selection
+      availabilityCells.forEach(cell => {
+        cell.addEventListener('click', function () {
+          this.classList.toggle('selected');
+        });
+      });
+
+      // Character counter for description
+      descriptionInput.addEventListener('input', function () {
+        const length = this.value.length;
+        charCount.textContent = `${length} / 500`;
+
+        if (length > 500) {
+          charCount.classList.add('text-red-500');
+        } else {
+          charCount.classList.remove('text-red-500');
+        }
+      });
+
+      // Live preview updates
+      subjectInput.addEventListener('input', function () {
+        previewSubject.textContent = this.value || 'Your subject will appear here...';
+      });
+
+      descriptionInput.addEventListener('input', function () {
+        previewDescription.textContent = this.value || 'Your description will appear here...';
+      });
+
+      function updatePricePreview() {
+        const price = priceInput.value;
+        const currency = currencySelect.value;
+
+        if (price) {
+          previewPriceContainer.classList.remove('hidden');
+          previewPrice.textContent = `${currency} $${price}/hr`;
+        } else {
+          previewPriceContainer.classList.add('hidden');
+        }
+      }
+
+      priceInput.addEventListener('input', updatePricePreview);
+      currencySelect.addEventListener('change', updatePricePreview);
+
+      // Form submission
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const subject = subjectInput.value;
+        const description = descriptionInput.value;
+        const price = priceInput.value;
+        const currency = currencySelect.value;
+
+        // Get selected availability
+        const selectedSlots = [];
+        availabilityCells.forEach(cell => {
+          if (cell.classList.contains('selected')) {
+            selectedSlots.push({
+              day: cell.getAttribute('data-day'),
+              time: cell.getAttribute('data-time')
+            });
+          }
+        });
+
+        // Validate
+        if (!subject || !description) {
+          alert('Please fill in all required fields');
+          return;
+        }
+
+        if (description.length > 500) {
+          alert('Description must be 500 characters or less');
+          return;
+        }
+
+        if (selectedSlots.length === 0) {
+          alert('Please select at least one available time slot');
+          return;
+        }
+
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 z-50';
+        successMessage.innerHTML = `
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <div>
+                        <p class="font-bold">Post Created Successfully!</p>
+                        <p class="text-sm">Tutors will start responding soon.</p>
+                    </div>
+                `;
+        document.body.appendChild(successMessage);
+
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = 'Main.html';
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+
+</html>
